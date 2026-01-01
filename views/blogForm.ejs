@@ -1,0 +1,47 @@
+<%-include("partials/start.ejs")%>
+<main class="bg-gray-50">
+  <div class="mx-auto md:h-screen flex flex-col justify-center items-center px-6 pt-8 pt:mt-0">
+    <a href="/" class="text-2xl font-semibold flex justify-center items-center mb-8 lg:mb-10">
+      <img src="/assets/images/logo.svg" class="h-10 mr-4" alt="Logo">
+      <span class="self-center text-2xl font-bold whitespace-nowrap">Blogster</span>
+    </a>
+    <!-- Card -->
+    <div class="shadow rounded-lg md:mt-0 w-full sm:max-w-screen-sm xl:p-0">
+      <div class="p-6 sm:p-8 lg:p-16 space-y-8">
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900">
+          Create New Blog
+        </h2>
+        <form class="mt-8 space-y-6" action="/add-blog" method="post" enctype="multipart/form-data">
+          <div>
+            <label for="blogTitle" class="text-sm font-medium text-gray-900 block mb-2">Blog Title</label>
+            <input type="text" name="blogTitle" id="blogTitle" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Enter your blog title">
+          </div>
+
+          <div>
+            <label for="blogImage" class="text-sm font-medium text-gray-900 block mb-2">Blog Image</label>
+            <input type="file" name="blogImage" id="blogImage" accept="image/*" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100">
+          </div>
+
+          <div>
+            <label for="blogTags" class="text-sm font-medium text-gray-900 block mb-2">Blog Tags</label>
+            <input type="text" name="blogTags" id="blogTags" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="javascript, react, tutorial">
+          </div>
+
+          <div>
+            <label for="blogDescription" class="text-sm font-medium text-gray-900 block mb-2">Blog Description</label>
+            <textarea name="blogDescription" id="blogDescription" rows="6" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Write your blog content here..."></textarea>
+          </div>
+
+          <button type="submit" class="text-white cursor-pointer bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center">
+            Create Blog
+          </button>
+
+          <div class="text-sm font-medium text-gray-500">
+            <a href="/" class="text-teal-500 hover:underline">Back to Blogs</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<%-include("partials/end.ejs")%>

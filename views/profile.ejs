@@ -1,0 +1,69 @@
+<!-- start -->
+<%-include("partials/start.ejs")%>
+    <!-- nav -->
+    <%-include("partials/navBar.ejs")%>
+        <div class="flex overflow-hidden bg-white pt-16">
+            <!-- side bar -->
+            <%-include("partials/aside.ejs")%>
+
+                <div id="main-content" class="h-full w-full relative overflow-y-auto lg:ml-64">
+                    <main class="p-6">
+
+                        <!-- Page Header -->
+                        <div class="mb-6">
+                            <h1 class="text-2xl font-bold text-gray-900">My Profile</h1>
+                            <p class="text-sm text-gray-500">Manage your account & blogs</p>
+                        </div>
+
+                        <!-- Profile Card -->
+                        <div class="max-w-3xl bg-white rounded-3xl shadow-xl p-8">
+
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+                                <!-- User Info -->
+                                <div class="flex items-center gap-5">
+                                    <!-- Avatar -->
+                                    <div
+                                        class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xl font-bold">
+                                        <%= user.userName.charAt(0).toUpperCase() %>
+                                    </div>
+
+                                    <!-- Name & Email -->
+                                    <div>
+                                        <h2 class="text-xl capitalize font-semibold text-gray-900">
+                                            <%= user.userName %>
+                                        </h2>
+                                        <p class="text-sm text-gray-500">
+                                            <%= user.userEmail %>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="flex gap-3">
+                                    <a href="/my-blogs"
+                                        class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-xl shadow-md hover:bg-indigo-700 transition">
+                                        📚 My Blogs
+                                    </a>
+
+                                    <a href="/add-blog"
+                                        class="px-6 py-3 bg-gray-100 text-gray-800 text-sm font-semibold rounded-xl hover:bg-gray-200 transition">
+                                        ➕ New Blog
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="my-6 border-t border-gray-100"></div>
+                        </div>
+
+                    </main>
+
+                </div>
+        </div>
+
+        <script async defer src="/assets/js/buttons.js"></script>
+        <script src="/assets/js/app.bundle.js"></script>
+        <!-- end -->
+        <%-include("partials/end.ejs")%>
