@@ -1,6 +1,7 @@
 const UserModel = require("../models/userModel.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const BlogModel = require("../models/blogModel.js");
 
 exports.getSignUp = (req, res) => {
     res.render("signUp");
@@ -67,7 +68,9 @@ exports.getProfile = async (req, res) => {
         const { userID } = req.userData;
         // console.log(userID);
         const user = await UserModel.findById(userID).select("-userPassword");
-        console.log(user);
+        const blogCount = await BlogModel.find({ blogAuthor: userID })
+        // console.log(user);
+        user.blogCount = blogCount.length;
         res.render("profile", { user });
 
     } catch (error) {

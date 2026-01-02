@@ -1,0 +1,90 @@
+<%-include("partials/start.ejs")%>
+<header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <a href="/" class="text-xl font-bold flex items-center lg:ml-2.5">
+      <img src="/assets/images/logo.svg" class="h-6 mr-2" alt="Blogter Logo">
+      <span class="self-center whitespace-nowrap">Blogster</span>
+    </a>
+
+    <div class="flex gap-3 items-center">
+      <% if (true) { %>
+      <a href="/my-blogs" class="px-4 py-2 text-sm font-semibold text-white bg-[#3798a6] rounded-lg hover:opacity-90 transition">
+        My Blogs
+      </a>
+      <form action="/auth/log-out" method="post">
+        <button class="px-4 cursor-pointer py-2 text-sm font-semibold text-[#3798a6] border border-[#3798a6] rounded-lg hover:bg-[#3798a6] hover:text-white transition">
+          <span class="">Logout</span>
+        </button>
+      </form>
+      <% } else { %>
+      <a href="/login" class="px-4 py-2 text-sm font-semibold text-white bg-[#3798a6] rounded-lg hover:opacity-90 transition">
+        Login
+      </a>
+      <% } %>
+    </div>
+  </div>
+</header>
+<!-- BLOGS GRID -->
+<main class="max-w-7xl mx-auto px-6 py-10">
+  
+  <% if (blogs.length === 0) { %>
+  <!-- EMPTY STATE -->
+  <div class="flex flex-col items-center justify-center py-20 px-4">
+
+    <div class="w-36 h-36 mb-8 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-3xl flex items-center justify-center shadow-xl">
+      <svg class="w-24 h-24 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+      </svg>
+    </div>
+
+    <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+      You haven’t written any blogs yet
+    </h2>
+
+    <p class="text-gray-600 text-lg mb-8 text-center max-w-md">
+      Start sharing your thoughts with the world by creating your first blog post.
+    </p>
+
+    <a href="/add-blog" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#00b3b3] to-[#009999]
+                   text-white font-semibold text-lg rounded-2xl shadow-xl hover:scale-105 transition">
+      ✍️ Write Your First Blog
+    </a>
+  </div>
+
+  <% } %>
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <% blogs.forEach(blog => { %>
+    <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition flex flex-col h-full">
+      <!-- Image -->
+      <div class="h-48 bg-gray-200">
+        <img src="/<%= blog.blogImage %>" alt="<%= blog.blogTitle %>" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Content -->
+      <div class="p-5 flex flex-col flex-1">
+        <h2 class="text-lg font-bold text-gray-800 mb-2 line-clamp-2">
+          <%= blog.blogTitle %>
+        </h2>
+
+        <div class="text-sm line-clamp-3 mb-6">
+          <%- blog.blogDescription %>
+        </div>
+
+        <div class="flex justify-between items-center mt-auto">
+          <span class="text-xs text-gray-500">
+            By <%= blog.blogAuthor.userName %>
+          </span>
+
+          <a href="/quick-view/<%= blog.id %>" class="text-sm font-semibold text-[#3798a6] hover:underline">
+            Read more →
+          </a>
+        </div>
+      </div>
+    </article>
+    <% }) %>
+
+  </div>
+</main>
+
+<%-include("partials/end.ejs")%>

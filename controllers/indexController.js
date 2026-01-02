@@ -6,7 +6,7 @@ exports.home = async (req, res) => {
     try {
         const data = await BlogModel.find({}).populate("blogAuthor", "userName");
         console.log(data)
-        res.render("index", { blogs: data });
+        res.render("allBlogs", { blogs: data });
     } catch (error) {
         console.log(error)
     }
@@ -80,7 +80,10 @@ exports.editBlog = async (req, res) => {
 exports.quickView = async (req, res) => {
     try {
         let { id } = req.params;
-        let blog = await BlogModel.findById(id);
+        let { userID } = req.userData;
+        const blog = await BlogModel.findById(id).lean();
+        blog.userId = userID;
+        console.log(blog)
         res.render("quickView", { blog });
     } catch (error) {
         console.log(error)

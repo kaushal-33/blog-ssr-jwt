@@ -1,131 +1,121 @@
 <!-- start -->
 <%-include("partials/start.ejs")%>
-  <!-- nav -->
-  <%-include("partials/navBar.ejs")%>
-    <div class="flex overflow-hidden bg-white pt-16">
-      <!-- side bar -->
-      <%-include("partials/aside.ejs")%>
+<!-- nav -->
+<%-include("partials/navBar.ejs")%>
+<div class="flex overflow-hidden bg-white pt-16">
+  <!-- side bar -->
+  <%-include("partials/aside.ejs")%>
 
-        <div id="main-content" class="h-full w-full relative overflow-y-auto lg:ml-64">
-          <main>
-            <% if (blogs.length === 0) { %>
-<div class="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
- 
-  <div class="w-32 h-32 sm:w-40 sm:h-40 mb-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl flex items-center justify-center shadow-xl">
-    <svg class="w-20 h-20 sm:w-24 sm:h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" 
-            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-    </svg>
-  </div>
+  <div id="main-content" class="h-full w-full relative overflow-y-auto lg:ml-64">
+    <main>
+      <% if (blogs.length === 0) { %>
+      <div class="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
 
-  <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 text-center">
-    No posts yet
-  </h2>
-  <p class="text-gray-600 text-lg sm:text-xl mb-8 max-w-md text-center leading-relaxed">
-    Your blog collection is looking a bit empty. Create your first post to get started!
-  </p>
+        <div class="w-32 h-32 sm:w-40 sm:h-40 mb-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl flex items-center justify-center shadow-xl">
+          <svg class="w-20 h-20 sm:w-24 sm:h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
 
-  <a href="/add-blog" 
-     class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#00b3b3] to-[#009999] text-white font-semibold text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transform transition-all duration-200 hover:from-[#00a0a0] hover:to-[#008080]">
-    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-    </svg>
-    Create First Post
-  </a>
-</div>
-<% } else { %>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 text-center">
+          No posts yet
+        </h2>
+        <p class="text-gray-600 text-lg sm:text-xl mb-8 max-w-md text-center leading-relaxed">
+          Your blog collection is looking a bit empty. Create your first post to get started!
+        </p>
 
-  <div class="p-6 sm:p-8 lg:p-10">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-        Posts
-      </h1>
-      <p class="text-gray-600 text-lg">Manage your blog collection with ease</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-  <% blogs.forEach(data => { %>
-   <div class="blog-card-wrapper h-full group">
-  <div
-    class="blog-card relative h-full flex flex-col bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-
-    <!-- Image -->
-    <div class="relative h-56 overflow-hidden">
-      <img src="/<%= data.blogImage %>" alt="<%= data.blogTitle %>"
-        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-
-      <!-- Hover Overlay -->
-      <div
-        class="absolute inset-0 bg-black/50 flex items-center justify-center
-               opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <a href="/quick-view/<%= data.id %>"
-          class="px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl shadow-lg
-                 hover:bg-indigo-600 hover:text-white transition">
-          👁 Quick View
+        <a href="/add-blog" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#00b3b3] to-[#009999] text-white font-semibold text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transform transition-all duration-200 hover:from-[#00a0a0] hover:to-[#008080]">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Create First Post
         </a>
       </div>
-    </div>
+      <% } else { %>
 
-    <!-- Content -->
-    <div class="p-8 flex flex-col flex-grow">
+      <div class="p-6 sm:p-8 lg:p-10">
+        <!-- Header -->
+        <div class="mb-8">
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+            Posts
+          </h1>
+          <p class="text-gray-600 text-lg">Manage your blog collection with ease</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+          <% blogs.forEach(data => { %>
+          <div class="blog-card-wrapper h-full group">
+            <div class="blog-card relative h-full flex flex-col bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
 
-      <!-- Title -->
-      <h3 class="text-xl font-bold text-gray-900 capitalize leading-tight line-clamp-2 mb-3">
-        <%= data.blogTitle %>
-      </h3>
+              <!-- Image -->
+              <div class="relative h-56 overflow-hidden">
+                <img src="/<%= data.blogImage %>" alt="<%= data.blogTitle %>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
-      <!-- Tags -->
-      <% let tags = data.blogTags.split(","); %>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <% tags.forEach(tag => { %>
-          <span
-            class="px-3 py-1 uppercase text-[10px] font-semibold rounded-full border border-[#00b3b3]">
-            <%= tag.trim() %>
-          </span>
-        <% }) %>
-      </div>
+                <!-- Hover Overlay -->
+                <div class="absolute inset-0  bg-black/50 flex items-center justify-center
+               opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <a href="/quick-view/<%= data.id %>" class="px-6 py-3 bg-[#3798a6] text-white font-semibold rounded-xl shadow-lg
+                 hover:bg-cyan-600 hover:text-black transition">
+                    👁 Quick View
+                  </a>
+                </div>
+              </div>
 
-      <!-- Description -->
-     <div class="text-sm line-clamp-3 mb-6">
-       <%- data.blogDescription %>
-    </div>
+              <!-- Content -->
+              <div class="p-8 flex flex-col flex-grow">
 
-      <!-- Actions -->
-      <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
-        <div class="flex gap-2 items-center">
-          <a href="/edit-form/<%= data.id %>"
-            class="px-4 py-2 text-sm font-semibold text-indigo-600 bg-indigo-50 rounded-xl">
-            Edit
-          </a>
+                <!-- Title -->
+                <h3 class="text-xl font-bold text-gray-900 capitalize leading-tight line-clamp-2 mb-3">
+                  <%= data.blogTitle %>
+                </h3>
 
-          <a href="/delete-blog/<%= data.id %>"
-            class="px-4 py-2 text-sm font-semibold text-red-600 bg-red-50 rounded-xl">
-            Delete
-          </a>
+                <!-- Tags -->
+                <% let tags = data.blogTags.split(","); %>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <% tags.forEach(tag => { %>
+                  <span class="px-3 py-1 uppercase text-[10px] font-semibold rounded-full border border-[#00b3b3]">
+                    <%= tag.trim() %>
+                  </span>
+                  <% }) %>
+                </div>
+
+                <!-- Description -->
+                <div class="text-sm line-clamp-3 mb-6">
+                  <%- data.blogDescription %>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+                  <div class="flex gap-2 items-center">
+                    <a href="/edit-form/<%= data.id %>" class="px-4 py-2 text-sm font-semibold text-indigo-600 bg-indigo-50 rounded-xl">
+                      Edit
+                    </a>
+
+                    <a href="/delete-blog/<%= data.id %>" class="px-4 py-2 text-sm font-semibold text-red-600 bg-red-50 rounded-xl">
+                      Delete
+                    </a>
+                  </div>
+
+                  <!-- Author -->
+                  <p class="text-[10px] uppercase font-semibold">
+                    ✍️ <%= data.blogAuthor.userName %>
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <% }) %>
         </div>
 
-        <!-- Author -->
-        <p class="text-[10px] uppercase font-semibold">
-          ✍️ <%= data.blogAuthor.userName %>
-        </p>
       </div>
+      <% } %>
 
-    </div>
+    </main>
   </div>
 </div>
 
-  <% }) %>
-</div>
-
-  </div>
-<% } %>
-
-          </main>
-        </div>
-    </div>
-
-    <script async defer src="/assets/js/buttons.js"></script>
-    <script src="/assets/js/app.bundle.js"></script>
-    <!-- end -->
-    <%-include("partials/end.ejs")%>
+<script async defer src="/assets/js/buttons.js"></script>
+<script src="/assets/js/app.bundle.js"></script>
+<!-- end -->
+<%-include("partials/end.ejs")%>
