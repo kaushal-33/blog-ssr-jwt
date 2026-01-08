@@ -1,0 +1,72 @@
+<!-- start -->
+<%- include("partials/start.ejs") %>
+
+    <main class="bg-gray-50">
+        <div class="mx-auto md:h-screen flex flex-col justify-center items-center px-6 pt-8 pt:mt-0">
+            <a href="/" class="text-2xl font-semibold flex justify-center items-center mb-8 lg:mb-10">
+                <img src="/assets/images/logo.svg" class="h-10 mr-4" alt="Logo">
+                <span class="self-center text-2xl font-bold whitespace-nowrap">Blogster</span>
+            </a>
+
+            <!-- Card -->
+            <div class="md:mt-0 w-full sm:max-w-screen-sm xl:p-0">
+                <div class="p-6 sm:p-8 lg:p-16 space-y-8">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900">
+                        Change Password
+                    </h2>
+
+                    <p class="text-sm text-gray-500">
+                        Please enter your current password and choose a new one.
+                    </p>
+
+                    <form class="mt-8 space-y-6" action="/change-pass" method="post">
+
+                        <!-- Current Password -->
+                        <div>
+                            <label for="currentPassword" class="text-sm font-medium text-gray-900 block mb-2">
+                                Current password
+                            </label>
+                            <input type="password" name="currentPassword" id="currentPassword" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                placeholder="••••••••">
+                        </div>
+
+                        <!-- New Password -->
+                        <div>
+                            <label for="newPassword" class="text-sm font-medium text-gray-900 block mb-2">
+                                New password
+                            </label>
+                            <input type="password" name="newPassword" id="newPassword" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                placeholder="••••••••">
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div>
+                            <label for="confirmPassword" class="text-sm font-medium text-gray-900 block mb-2">
+                                Confirm new password
+                            </label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                placeholder="••••••••">
+                        </div>
+
+                        <button type="submit"
+                            class="text-white cursor-pointer bg-[#3798a6] hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center">
+                            Update Password
+                        </button>
+
+                        <div class="text-sm font-medium text-gray-500">
+                            Back to
+                            <a href="/my-blogs" class="text-teal-500 hover:underline">
+                                Dashboard
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- end -->
+    <%- include("partials/end.ejs") %>

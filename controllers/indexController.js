@@ -1,7 +1,8 @@
 const BlogModel = require("../models/blogModel.js");
 const fs = require("fs");
 const path = require("path");
-
+const UserModel = require("../models/userModel.js");
+const bcrypt = require("bcrypt");
 exports.home = async (req, res) => {
     try {
         const data = await BlogModel.find({}).populate("blogAuthor", "userName");
@@ -39,7 +40,7 @@ exports.deleteBlog = async (req, res) => {
     try {
         let { id } = req.params;
         let data = await BlogModel.findById(id);
-        console.log(data);
+        // console.log(data);
         let imgPath = path.join(__dirname, "..", data?.blogImage);
         fs.unlink(imgPath, err => err && console.log(err));
         await BlogModel.findByIdAndDelete(id);
@@ -83,7 +84,7 @@ exports.quickView = async (req, res) => {
         let { userID } = req.userData;
         const blog = await BlogModel.findById(id).lean();
         blog.userId = userID;
-        console.log(blog)
+        // console.log(blog)
         res.render("quickView", { blog });
     } catch (error) {
         console.log(error)
@@ -97,6 +98,36 @@ exports.getMyBlogs = async (req, res) => {
         // console.log(myBlogs);
 
         return res.render("myBlogs", { myBlogs });
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+exports.changePassPage = (req, res) => {
+    res.render("changePass");
+}
+
+exports.changePass = async (req, res) => {
+    try {
+        const { userID } = req.userData;
+        const { currentPassword, newPassword, confirmPassword } = req.body;
+        if (newPassword !== confirmPassword) {
+            return res.send('New password and Confirm password must be same....!');
+        }
+        const user = await UserModel.findOne({ _id: userID });
+        // console.log(user)
+        const isValidPass = await bcrypt.compare(currentPassword, user.userPassword);
+        // console.log(isValidPass);
+        if (isValidPass) {
+            const newHashedPass = await bcrypt.hash(confirmPassword, 10);
+            user.userPassword = newHashedPass;
+            await user.save();
+            res.clearCookie("accessToken");
+            return res.redirect("/auth");
+        } else {
+            res.send("Current password is incorrect...!");
+        }
+
     } catch (error) {
         console.log(error.message);
     }
